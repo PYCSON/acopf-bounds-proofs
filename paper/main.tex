@@ -18,7 +18,7 @@ semidefinite and sum-of-squares dual certificates whose positive semidefinitenes
 interval arithmetic. All proof decisions use directed rounding on the unmodified case data. All 52 endpoints are accepted
 by checkers written separately from the programs that produced the certificates. Thirteen of the 26 cases have a relative
 gap of at most $10^{-6}$; the largest instances, case1951\_rte and case2000\_goc, have relative gaps of about
-$8.1\times10^{-6}$ and $3.8\times10^{-4}$. The certificates, checkers and a one-command replay script are published with
+$8.1\times10^{-6}$ and $3.8\times10^{-4}$. The certificates, checkers and a one-command replay script accompany
 this note. No claim of priority is made; the work was carried out with extensive use of AI systems, as detailed at the end.
 \end{abstract}
 
@@ -66,15 +66,15 @@ given by Gram matrices on the cliques of a chordal extension of the network grap
 on selected ones), the $\eta_k$ are polynomial multipliers, and $R$ is the residual. The checker proves each Gram matrix
 positive semidefinite after a small diagonal shift by an interval $LDL^\top$ factorization (floating point only proposes the
 shift), and subtracts from $t$ the worst-case effect of all shifts and of the residual over the voltage box. Bus costs
-enter exactly, or through affine minorants $\lambda P+\psi(\lambda)$ whose constants are computed exactly. Thirteen cases use
-a chordal Shor-level (Lagrangian) certificate in a dedicated format with its own checker; the others use the sparse
-sum-of-squares format.
+enter exactly, or through affine minorants $\lambda P+\psi(\lambda)$ whose constants are computed exactly. Nine cases use a chordal Shor-level (Lagrangian) certificate in a
+dedicated format with its own checker; the remaining seventeen use the sparse sum-of-squares format.
 
 \section{Results}
 Table~\ref{tab:results} lists the bounds. Each value is the endpoint declared in the certificate, which the checker must
 prove; $L$ is rounded down and $U$ up to six decimals, and the relative gap $(U-L)/U$ is computed from the full-precision
-values. The cases with the widest gaps (case1803\_snem 3.6\%, case1888\_rte 1.9\%, case162\_ieee\_dtc 1.4\%, case240\_pserc
-1.4\%) are those where the order-two relaxations that fit in the available memory remain far from the optimum.
+values. The widest gaps occur for case1803\_snem (3.6\%), case1888\_rte (1.9\%), case162\_ieee\_dtc
+(1.4\%) and case240\_pserc (1.4\%). They describe the strength of the certificates available here, not a demonstrated limit
+of any relaxation family; for case1803\_snem the lower certificate is chordal Shor-level, not an order-two certificate.
 
 {\small\input{table.tex}}
 
@@ -122,7 +122,7 @@ drafted by GPT and revised by Claude. \emph{The author did not personally verify
 rest on the certificates and checkers, which anyone can re-run. AI systems are not listed as authors.
 
 \section*{Data and code}
-Certificates, checkers, case files and the replay script are available in the accompanying repository
+Certificates, checkers, case files and the replay script are in the accompanying repository
 (https://github.com/PYCSON/acopf-bounds-proofs). Code: MIT licence. Certificates and text: CC BY 4.0. Case files: PGLib-OPF v23.07 \cite{pglib},
 CC BY 4.0, unmodified.
 
