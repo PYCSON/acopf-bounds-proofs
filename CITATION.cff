@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use these certificates or checkers, please cite them as below."
+title: "Two-sided rigorous optimality bounds for the PGLib-OPF v23.07 typical cases (computer-assisted proof candidate)"
+authors:
+  - family-names: "Sun"
+    given-names: "Puyi"
+    orcid: "https://orcid.org/0009-0004-1644-5300"
+version: "1.0.0"
+license:
+  - "CC-BY-4.0"   # certificates, tables, text
+  - "MIT"         # code (checkers/, replay.py)
+# date-released, doi and repository-code are filled in at release time
+references:
+  - type: article
+    title: "The Power Grid Library for Benchmarking AC Optimal Power Flow Algorithms"
+    authors:
+      - family-names: "Babaeinejadsarookolaee"
+        given-names: "Sogol"
+    notes: "arXiv:1908.02788 (and further PGLib-OPF authors); data source, CC BY 4.0"

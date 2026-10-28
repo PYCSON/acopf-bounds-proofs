@@ -1,0 +1,131 @@
+\documentclass[10pt]{article}
+\usepackage[a4paper,margin=19mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,booktabs,longtable,array,xcolor}
+\usepackage[hidelinks]{hyperref}
+\title{Two-Sided Interval-Verified Optimality Bounds for the\\ PGLib-OPF v23.07 Typical AC Optimal Power Flow Cases}
+\author{Puyi Sun\thanks{ORCID \href{https://orcid.org/0009-0004-1644-5300}{0009-0004-1644-5300}.}}
+\date{\textbf{Computer-assisted proof candidate, not peer reviewed.}\\ Version 1.0, 28 October 2026}
+\begin{document}\maketitle
+
+\begin{abstract}
+For each of the 26 typical-operating-condition (TYP) cases of the PGLib-OPF v23.07 benchmark library, with 3 to 2000
+buses, we give a lower bound $L$ and an upper bound $U$ on the global optimum of the nonconvex AC optimal power flow
+problem, together with machine-checkable certificates. The upper bounds come from Krawczyk interval-Newton enclosures of
+exact power-flow solutions at which all operational limits are verified; the lower bounds come from sparse
+semidefinite and sum-of-squares dual certificates whose positive semidefiniteness and polynomial residuals are checked in
+interval arithmetic. All proof decisions use directed rounding on the unmodified case data. All 52 endpoints are accepted
+by checkers written separately from the programs that produced the certificates. Thirteen of the 26 cases have a relative
+gap of at most $10^{-6}$; the largest instances, case1951\_rte and case2000\_goc, have relative gaps of about
+$8.1\times10^{-6}$ and $3.8\times10^{-4}$. The certificates, checkers and a one-command replay script are published with
+this note. No claim of priority is made; the work was carried out with extensive use of AI systems, as detailed at the end.
+\end{abstract}
+
+\noindent\fcolorbox{black!40}{black!3}{\parbox{0.97\linewidth}{\textbf{Terminology.}
+\emph{Rigorous / verified} means that every numerical proof obligation (positive semidefiniteness and residual bounds for $L$;
+Krawczyk inclusion, every operational limit and the cost for $U$) is discharged by outward-rounded interval arithmetic on the
+exact decimal data of the case file. In parts of the optimal power flow literature ``certified'' refers to a duality gap
+below a solver tolerance; that weaker meaning is not used here. \emph{Independently checked} means accepted by checker
+programs written separately from the certificate generators and importing nothing from them. It does \emph{not} mean
+external human peer review or a formal proof in a proof assistant.}}
+
+\section{Problem and claim}
+Each case is the AC optimal power flow model of PGLib-OPF v23.07 \cite{pglib} with the data of its \texttt{.m} file taken as
+exact decimals: complex bus voltages; nodal active and reactive power balance with shunts and $\pi$-model branches (tap
+ratios and phase shifts); generator active and reactive power limits; voltage magnitude limits; apparent-power limits at
+both ends of every rated branch; branch phase-angle-difference limits; and convex quadratic generation cost. Writing $K$
+for the feasible set and $f$ for the cost, each case comes with a certificate pair proving
+\begin{equation}
+L \;\le\; f^\ast := \min_{x\in K} f(x) \;\le\; U .
+\end{equation}
+Both certificates of a case record the SHA-256 digest of the same case file. Other model variants (for example
+current-magnitude thermal limits) and other PGLib versions are not covered.
+
+\section{Upper bounds: Krawczyk enclosures}
+An upper certificate stores an approximate operating point $\tilde z$ (voltages and free generator outputs) and a radius.
+The checker rebuilds the power-flow equations $F(z)=0$ from the case file and forms the Krawczyk operator \cite{krawczyk}
+\[
+\mathcal K(\tilde z,Z)=\tilde z-C\,F(\tilde z)+\bigl(I-C\,F'(Z)\bigr)(Z-\tilde z),
+\]
+where the preconditioner $C$ is an approximate inverse proposed in floating point (sparse rows for large cases) and then
+used as exact dyadic numbers. If $\mathcal K(\tilde z,Z)$ lies in the interior of the box $Z$, the box contains an exact
+solution of $F=0$. The checker then evaluates every operational limit and the cost over the whole box in interval
+arithmetic; if all limits hold, the enclosed exact solution is feasible and its cost is at most the upper end of the cost
+interval. Setpoints fixed in the data (equal lower and upper limits) are compared as exact decimals. For the 2000-bus case
+the system has 4000 real unknowns; one check took about 30--40 minutes and 160--210\,MB of memory on a two-core Linux
+machine.
+
+\section{Lower bounds: sparse dual certificates}
+A lower certificate is a polynomial identity in the real voltage coordinates $x=(e,f)$,
+\begin{equation}
+f(x)-t=\sum_i \sigma_i(x)+\sum_j \tau_j(x)\,g_j(x)+\sum_k \eta_k(x)\,h_k(x)+R(x),
+\end{equation}
+where $g_j\ge 0$ and $h_k=0$ are the constraints, the $\sigma_i$ and the localizing multipliers $\tau_j$ are sums of squares
+given by Gram matrices on the cliques of a chordal extension of the network graph (order one on most cliques and order two
+on selected ones), the $\eta_k$ are polynomial multipliers, and $R$ is the residual. The checker proves each Gram matrix
+positive semidefinite after a small diagonal shift by an interval $LDL^\top$ factorization (floating point only proposes the
+shift), and subtracts from $t$ the worst-case effect of all shifts and of the residual over the voltage box. Bus costs
+enter exactly, or through affine minorants $\lambda P+\psi(\lambda)$ whose constants are computed exactly. Thirteen cases use
+a chordal Shor-level (Lagrangian) certificate in a dedicated format with its own checker; the others use the sparse
+sum-of-squares format.
+
+\section{Results}
+Table~\ref{tab:results} lists the bounds. Each value is the endpoint declared in the certificate, which the checker must
+prove; $L$ is rounded down and $U$ up to six decimals, and the relative gap $(U-L)/U$ is computed from the full-precision
+values. The cases with the widest gaps (case1803\_snem 3.6\%, case1888\_rte 1.9\%, case162\_ieee\_dtc 1.4\%, case240\_pserc
+1.4\%) are those where the order-two relaxations that fit in the available memory remain far from the optimum.
+
+{\small\input{table.tex}}
+
+\section{Independent checking and replay}
+Three checker programs, one for upper certificates and one for each lower-certificate format, were written separately from
+the generators; each reads only the raw case file and one certificate, uses the \texttt{mpmath} interval library for every
+decision, and uses floating point only to propose numbers that are then verified. All 52 endpoints were accepted by these
+checkers on a Linux machine, and again, all 52, on the author's own computer (WSL2 Ubuntu, Python 3.14) with byte-identical inputs;
+the smaller cases were also replayed in a separate sandbox, and many endpoints on a Windows machine. Deliberately corrupted
+certificates (zeroed or negated Gram blocks, negated multipliers, altered cost pieces, declared bounds raised above the
+proved value, wrong case-file digest, removed equality multipliers, Krawczyk centres moved, setpoints pushed out of
+limits) were all rejected. The accompanying \texttt{replay.py} verifies the SHA-256 manifest of the release, checks that the
+declared values in its index match the certificates, and re-runs every checker.
+
+\section{Related work and position}
+Oustry, D'Ambrosio, Liberti and Ruiz \cite{oustry} computed certified SDP lower bounds (via a Gershgorin-type eigenvalue
+bound on rational dual data) for AC-OPF instances with up to 6515 buses (PGLib v21.07, with current-magnitude limits);
+their upper bounds are local-solver (IPOPT) values without a feasibility proof. Gopinath et al.\ \cite{gopinath} closed or nearly closed many PGLib gaps with SDP-based bound
+tightening and valid inequalities, using floating-point solvers. Sparse moment-sum-of-squares hierarchies certify global
+optimality numerically on large AC-OPF instances \cite{cstssos,wangopf,lefranc}. Recent work strengthens relaxations with
+offline bound tightening \cite{an}, lifted nonlinear cuts \cite{bugosen} and enhanced SDP models \cite{enhancedsdp}; robust
+AC-OPF has been solved to small solver-tolerance gaps by spatial branch and bound \cite{yin}. Interval methods for power
+flow feasibility are classical. We make no priority claim. What this note adds is a fixed, machine-replayable artifact in
+which both ends of the optimality interval are verified with directed rounding, for all 26 TYP cases up to 2000 buses, and
+re-checked by separately written checkers. We could not read the full text of \cite{an}; its abstract reports
+numerical relaxation gaps only.
+
+\section{Limitations}
+\begin{enumerate}
+\item The results rest on the correctness of the checker programs and of the interval library; separate authorship of
+checkers and generators reduces, but does not remove, the risk of a shared error. There has been no external review.
+\item The bounds concern the PGLib v23.07 TYP model exactly as written; they say nothing about other variants, other data or
+real-world operation.
+\item Several gaps are wide (Section~4); narrowing them needs stronger relaxations than those used here.
+\end{enumerate}
+
+\section*{AI assistance and responsibility}
+This work was carried out with AI systems under the direction of the author, who chose the problem, set the acceptance
+rules, decided which results to keep, operated the machines and is responsible for this release. The certificate-generating
+programs were written mainly by Claude (Anthropic), with one SDP-assembly module by Codex (OpenAI); certificates were
+generated by Claude and, for some lower certificates, by Codex. The independent checkers were written by GPT (OpenAI) and
+their source was reviewed by Claude; they were run by Claude, by GPT, by Codex and on the author's computer as stated in
+Section~5. Mathematical review of the certificate formats was done by GPT and Claude, reviewing each other. This text was
+drafted by GPT and revised by Claude. \emph{The author did not personally verify the mathematics line by line}; the claims
+rest on the certificates and checkers, which anyone can re-run. AI systems are not listed as authors.
+
+\section*{Data and code}
+Certificates, checkers, case files and the replay script are available in the accompanying repository
+(https://github.com/PYCSON/acopf-bounds-proofs). Code: MIT licence. Certificates and text: CC BY 4.0. Case files: PGLib-OPF v23.07 \cite{pglib},
+CC BY 4.0, unmodified.
+
+\bibliographystyle{plain}
+\bibliography{references}
+\end{document}

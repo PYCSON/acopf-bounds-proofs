@@ -1,0 +1,227 @@
+{
+ "case": "case14_ieee",
+ "sha256": "bd5c568621de65e4b0922317010868bc7fa94173807faa10ea8fdbbe77c28106",
+ "slack_gen": 0,
+ "radius": 1e-10,
+ "U": 2178.0804481022597,
+ "U_str": "[2178.0804459241786 +/- 3.30e-14]",
+ "U_rounding": "outward (nextafter +inf) after +1e-9 relative slack",
+ "premises": {
+  "model_variant": "pglib",
+  "pglib_sha256": "bd5c568621de65e4b0922317010868bc7fa94173807faa10ea8fdbbe77c28106",
+  "buses_in_service": 14,
+  "branches_in_service": 20,
+  "generators_in_service": 5,
+  "reference_bus": 1,
+  "angle_limits_strictly_within_90deg": true,
+  "quadratic_cost_coefficients_nonnegative": true,
+  "pinned_P": 3,
+  "pinned_Q": 0,
+  "pinned_V": 0
+ },
+ "y_tilde": [
+  "-0x1.ad69bda6f4ae5p-4",
+  "-0x1.f165115b97e9dp-3",
+  "-0x1.912f11b2812c0p-3",
+  "-0x1.5715f82c9bfbdp-3",
+  "-0x1.104798fc0aadap-2",
+  "-0x1.ff7e2e4848f3bp-3",
+  "-0x1.ff7e2e4848f3bp-3",
+  "-0x1.1c7b55e03cc98p-2",
+  "-0x1.1f823ca5e01d9p-2",
+  "-0x1.1a385f59aa3e5p-2",
+  "-0x1.1fe03314845d2p-2",
+  "-0x1.212e9acc48cb8p-2",
+  "-0x1.30e3bf0b28735p-2",
+  "0x1.01ce7d28eb546p+0",
+  "0x1.027e29287cd2fp+0",
+  "0x1.0add099a7fb67p+0",
+  "0x1.0a13207b24546p+0",
+  "0x1.091355478ffe1p+0",
+  "0x1.0b45e76afb614p+0",
+  "0x1.0b6817d927096p+0",
+  "0x1.0a0ad7f5f6e4cp+0",
+  "0x1.0563e66dbd103p+0",
+  "0x1.b454f1754a285p-7",
+  "0x1.3333321548ef2p-2",
+  "0x1.611a84f1b63aep-2",
+  "0x1.38ac149eb0a3fp-3",
+  "0x1.b0efd1ce1eb1cp-4",
+  "0x1.5ff8820d6ceccp+1"
+ ],
+ "pg_fix": [
+  "0x1.5ff8820d6ced6p+1",
+  "0x1.5816a39f43fe1p-27",
+  "0x0.0p+0",
+  "0x0.0p+0",
+  "0x0.0p+0"
+ ],
+ "vm_fix": [
+  "0x1.0f5c28ca68219p+0",
+  "0x1.084fd47529f4bp+0",
+  "0x1.01b4394fe4fecp+0",
+  "0x1.01ce7d28eb546p+0",
+  "0x1.027e29287cd2fp+0",
+  "0x1.0f5c28c732733p+0",
+  "0x1.0add099a7fb67p+0",
+  "0x1.0f5c28c6cd7d4p+0",
+  "0x1.0a13207b24546p+0",
+  "0x1.091355478ffe0p+0",
+  "0x1.0b45e76afb616p+0",
+  "0x1.0b6817d927097p+0",
+  "0x1.0a0ad7f5f6e4cp+0",
+  "0x1.0563e66dbd104p+0"
+ ],
+ "qg_cand": [
+  "0x1.b454f1754a764p-7",
+  "0x1.3333321548ef7p-2",
+  "0x1.611a84f1b6391p-2",
+  "0x1.38ac149eb09b3p-3",
+  "0x1.b0efd1ce1eb3ep-4"
+ ],
+ "pfixed": [
+  false,
+  false,
+  true,
+  true,
+  true
+ ],
+ "vfixed": [
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false
+ ],
+ "qfixed": [
+  false,
+  false,
+  false,
+  false,
+  false
+ ],
+ "layout": [
+  [
+   "va",
+   1
+  ],
+  [
+   "va",
+   2
+  ],
+  [
+   "va",
+   3
+  ],
+  [
+   "va",
+   4
+  ],
+  [
+   "va",
+   5
+  ],
+  [
+   "va",
+   6
+  ],
+  [
+   "va",
+   7
+  ],
+  [
+   "va",
+   8
+  ],
+  [
+   "va",
+   9
+  ],
+  [
+   "va",
+   10
+  ],
+  [
+   "va",
+   11
+  ],
+  [
+   "va",
+   12
+  ],
+  [
+   "va",
+   13
+  ],
+  [
+   "vm",
+   3
+  ],
+  [
+   "vm",
+   4
+  ],
+  [
+   "vm",
+   6
+  ],
+  [
+   "vm",
+   8
+  ],
+  [
+   "vm",
+   9
+  ],
+  [
+   "vm",
+   10
+  ],
+  [
+   "vm",
+   11
+  ],
+  [
+   "vm",
+   12
+  ],
+  [
+   "vm",
+   13
+  ],
+  [
+   "qb",
+   0
+  ],
+  [
+   "qb",
+   1
+  ],
+  [
+   "qb",
+   2
+  ],
+  [
+   "qb",
+   5
+  ],
+  [
+   "qb",
+   7
+  ],
+  [
+   "ps",
+   0
+  ]
+ ],
+ "declared_slack_rel": 1e-09
+}

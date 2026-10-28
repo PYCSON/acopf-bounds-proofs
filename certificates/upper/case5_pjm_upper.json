@@ -1,0 +1,119 @@
+{
+ "case": "case5_pjm",
+ "sha256": "cadf7501a15c2d508820493cef6acc85757274197e74c40bcec4fc4ecf619e6f",
+ "slack_gen": 3,
+ "radius": 1e-10,
+ "U": 17551.891093361948,
+ "U_str": "[17551.8910758100536 +/- 9.49e-14]",
+ "U_rounding": "outward (nextafter +inf) after +1e-9 relative slack",
+ "premises": {
+  "model_variant": "pglib",
+  "pglib_sha256": "cadf7501a15c2d508820493cef6acc85757274197e74c40bcec4fc4ecf619e6f",
+  "buses_in_service": 5,
+  "branches_in_service": 6,
+  "generators_in_service": 5,
+  "reference_bus": 4,
+  "angle_limits_strictly_within_90deg": true,
+  "quadratic_cost_coefficients_nonnegative": true,
+  "pinned_P": 0,
+  "pinned_Q": 0,
+  "pinned_V": 0
+ },
+ "y_tilde": [
+  "0x1.90e09f092532cp-5",
+  "-0x1.a42667a6c8ac1p-7",
+  "-0x1.401cbf9bf13b0p-7",
+  "0x1.00ab53b691910p-4",
+  "0x1.1585441e09019p+0",
+  "0x1.933332d48d2b1p+0",
+  "0x1.f33333164af16p+1",
+  "-0x1.ba7643202229fp-4",
+  "-0x1.a680395b96240p+0",
+  "0x1.830187e636522p-27"
+ ],
+ "pg_fix": [
+  "0x1.999998ebac3bdp-2",
+  "0x1.b33333077176bp+0",
+  "0x1.9f5bab8384badp+1",
+  "0x1.83018cf2077e0p-27",
+  "0x1.2d3e702bb93b2p+2"
+ ],
+ "vm_fix": [
+  "0x1.13debfe578d80p+0",
+  "0x1.1585441e09019p+0",
+  "0x1.1999996da8413p+0",
+  "0x1.106b4c67b684ap+0",
+  "0x1.11ae9d3a34bdep+0"
+ ],
+ "qg_cand": [
+  "0x1.33333275e6f03p-2",
+  "0x1.466666371371bp+0",
+  "0x1.f33333164aeeap+1",
+  "-0x1.ba76432021aacp-4",
+  "-0x1.a680395b961a1p+0"
+ ],
+ "pfixed": [
+  false,
+  false,
+  false,
+  false,
+  false
+ ],
+ "vfixed": [
+  false,
+  false,
+  false,
+  false,
+  false
+ ],
+ "qfixed": [
+  false,
+  false,
+  false,
+  false,
+  false
+ ],
+ "layout": [
+  [
+   "va",
+   0
+  ],
+  [
+   "va",
+   1
+  ],
+  [
+   "va",
+   2
+  ],
+  [
+   "va",
+   4
+  ],
+  [
+   "vm",
+   1
+  ],
+  [
+   "qb",
+   0
+  ],
+  [
+   "qb",
+   2
+  ],
+  [
+   "qb",
+   3
+  ],
+  [
+   "qb",
+   4
+  ],
+  [
+   "ps",
+   3
+  ]
+ ],
+ "declared_slack_rel": 1e-09
+}

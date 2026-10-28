@@ -1,0 +1,87 @@
+{
+ "case": "case3_lmbd",
+ "sha256": "168f73f389aa8abd7707fae04d26ee2046ef3622e8ea2f6661a89d815e9c637d",
+ "slack_gen": 0,
+ "radius": 1e-10,
+ "U": 5812.643004927065,
+ "U_str": "[5812.642999114421229 +/- 3.53e-16]",
+ "U_rounding": "outward (nextafter +inf) after +1e-9 relative slack",
+ "premises": {
+  "model_variant": "pglib",
+  "pglib_sha256": "168f73f389aa8abd7707fae04d26ee2046ef3622e8ea2f6661a89d815e9c637d",
+  "buses_in_service": 3,
+  "branches_in_service": 3,
+  "generators_in_service": 3,
+  "reference_bus": 1,
+  "angle_limits_strictly_within_90deg": true,
+  "quadratic_cost_coefficients_nonnegative": true,
+  "pinned_P": 1,
+  "pinned_Q": 0,
+  "pinned_V": 0
+ },
+ "y_tilde": [
+  "0x1.037645d3b3290p-3",
+  "-0x1.3499bcca3368cp-2",
+  "0x1.180cca85bf02bp-1",
+  "-0x1.6815bee3d6974p-4",
+  "-0x1.8cb56b11f86abp-5",
+  "0x1.7b0d224a61d77p+0"
+ ],
+ "pg_fix": [
+  "0x1.7b0d224a61d77p+0",
+  "0x1.b33751767578ap+0",
+  "0x0.0p+0"
+ ],
+ "vm_fix": [
+  "0x1.1999996e835afp+0",
+  "0x1.da3306d232a60p-1",
+  "0x1.cccccd22bde8cp-1"
+ ],
+ "qg_cand": [
+  "0x1.180cca85bf016p-1",
+  "-0x1.6815bee3d6974p-4",
+  "-0x1.8cb56b11f870dp-5"
+ ],
+ "pfixed": [
+  false,
+  false,
+  true
+ ],
+ "vfixed": [
+  false,
+  false,
+  false
+ ],
+ "qfixed": [
+  false,
+  false,
+  false
+ ],
+ "layout": [
+  [
+   "va",
+   1
+  ],
+  [
+   "va",
+   2
+  ],
+  [
+   "qb",
+   0
+  ],
+  [
+   "qb",
+   1
+  ],
+  [
+   "qb",
+   2
+  ],
+  [
+   "ps",
+   0
+  ]
+ ],
+ "declared_slack_rel": 1e-09
+}
