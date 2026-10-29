@@ -1,5 +1,7 @@
 # Two-sided rigorous optimality bounds for the PGLib-OPF v23.07 typical cases
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23752138.svg)](https://doi.org/10.5281/zenodo.23752138)
+
 **Status: computer-assisted proof candidate, not peer reviewed.**
 
 Author: Puyi Sun (ORCID [0009-0004-1644-5300](https://orcid.org/0009-0004-1644-5300)).
@@ -109,5 +111,5 @@ authors, unmodified copies of tag v23.07. Details in [LICENSE-DATA.md](LICENSE-D
 
 ## Citation
 
-See [CITATION.cff](CITATION.cff). Data source: S. Babaeinejadsarookolaee et al., *The Power Grid Library for Benchmarking AC
+Archived on Zenodo: https://doi.org/10.5281/zenodo.23752138 (v1.0.1; mathematical content identical to v1.0). See [CITATION.cff](CITATION.cff). Data source: S. Babaeinejadsarookolaee et al., *The Power Grid Library for Benchmarking AC
 Optimal Power Flow Algorithms*, arXiv:1908.02788.

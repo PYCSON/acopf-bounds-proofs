@@ -8,6 +8,7 @@ authors:
     orcid: "https://orcid.org/0009-0004-1644-5300"
 version: "1.0.1"
 date-released: "2026-10-29"
+doi: "10.5281/zenodo.23752138"
 license: "CC-BY-4.0"
 repository-code: "https://github.com/PYCSON/acopf-bounds-proofs"
 keywords:
