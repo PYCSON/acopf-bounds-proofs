@@ -1,0 +1,14 @@
+{
+  "title": "Two-sided interval-verified optimality bounds for the PGLib-OPF v23.07 typical cases",
+  "upload_type": "software",
+  "description": "<p><strong>Computer-assisted proof candidate, not peer reviewed.</strong></p><p>Lower and upper bounds L &le; OPT &le; U on the global optimum of the AC optimal power flow problem for all 26 typical-operating-condition cases of PGLib-OPF v23.07 (3 to 2000 buses), with machine-checkable certificates: Krawczyk interval-Newton enclosures for the upper bounds and sparse SDP/sum-of-squares dual certificates for the lower bounds, all checked with outward-rounded interval arithmetic. Includes independent checkers, a one-command replay script, replay records of all 52 endpoints on a second machine, and a short paper. AI assistance is disclosed in AI_DISCLOSURE.md. Licences: certificates, data and text CC BY 4.0; code (checkers, replay.py) MIT; PGLib-OPF case files CC BY 4.0 by the PGLib-OPF authors, unmodified.</p>",
+  "creators": [
+    {"name": "Sun, Puyi", "orcid": "0009-0004-1644-5300"}
+  ],
+  "license": "cc-by-4.0",
+  "keywords": ["AC optimal power flow", "PGLib-OPF", "interval arithmetic", "Krawczyk", "sum of squares", "computer-assisted proof"],
+  "related_identifiers": [
+    {"identifier": "arXiv:1908.02788", "relation": "references", "scheme": "arxiv"}
+  ],
+  "version": "1.0.1"
+}
